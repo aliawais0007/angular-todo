@@ -1,0 +1,12 @@
+<div class="task-wrapper">
+    <div *ngFor="let task of tasks" class="task" >
+        <label>
+            <input type="checkbox" *ngIf="task.reminder" checked (change)="handleReminder(task)"/>
+            <input type="checkbox" *ngIf="!task.reminder" (change)="handleReminder(task)"/>
+            Reminder Status
+        </label>
+        <h2>{{task.title}} </h2>
+        <span>{{ task.date }}</span>
+        <fa-icon [icon]="faTimes" (click)="onDelete(task)"></fa-icon>
+    </div>
+</div>

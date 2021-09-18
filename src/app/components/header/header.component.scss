@@ -1,0 +1,13 @@
+header {
+  &.header {
+    background-color: cornflowerblue;
+    height: 70px;
+    border-radius: 12px;
+    border: 1px solid #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    color: #fff;
+  }
+}
