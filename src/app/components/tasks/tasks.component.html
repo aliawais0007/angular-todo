@@ -9,4 +9,5 @@
         <span>{{ task.date }}</span>
         <fa-icon [icon]="faTimes" (click)="onDelete(task)"></fa-icon>
     </div>
+    <app-taskmodal (addNewTask)="addNewTask($event)"></app-taskmodal>
 </div>

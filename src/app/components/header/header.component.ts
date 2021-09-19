@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {TaskService} from "../../services/task.service";
 
 @Component({
   selector: 'app-header',
@@ -6,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
- title: string = "TODO List"
-  constructor() { }
+ title: string = "TODO List";
+ 
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
   }
 
   btnClick(){
-    console.log("Clicked")
+    this.taskService.setDisplay("block");
   }
+
+  
 }

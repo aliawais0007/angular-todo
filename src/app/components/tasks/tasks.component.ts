@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import {Task} from "../../Task";
 import {TaskService} from "../../services/task.service";
 import {faTimes} from "@fortawesome/free-solid-svg-icons"
@@ -10,6 +10,8 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons"
 })
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
+  @Input() display: string;
+  @Output() handleModal = new EventEmitter();
   faTimes = faTimes;
   constructor(private taskService: TaskService) { }
 
@@ -19,11 +21,15 @@ export class TasksComponent implements OnInit {
 
   handleReminder(task: Task){
     task.reminder = !task.reminder;
-    this.taskService.updateReminder(task).subscribe((res)=>console.log(res))
+    this.taskService.updateReminder(task).subscribe(()=> true)
   }
 
   onDelete(task){
     this.taskService.deleteTask(task).subscribe(()=>this.tasks = this.tasks.filter((elm)=>elm.id!==task.id))
+  }
+  
+  addNewTask(task: Task){
+    this.taskService.addTask(task).subscribe((data)=>this.tasks.push(data))
   }
 
 }
